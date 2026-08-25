@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/aaaaaeeeeuuu/New-GUI/refs/heads/main/50kgUI.lua", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/aaaaaeeeeuuu/New-GUI/refs/heads/main/50KGxOG.lua", true))()
 
 -- Make sure the Players service is available
 local Players = game:GetService("Players")
