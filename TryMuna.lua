@@ -1,11 +1,11 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/aaaaaeeeeuuu/Ml2/refs/heads/main/Kyo-UI-LibraryxPrivate.txt", true))()
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/aaaaaeeeeuuu/New-GUI/refs/heads/main/50KGxOG.lua", true))()
 
 -- Make sure the Players service is available
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
 -- Dynamically generate the window title with a welcome message
-local windowTitle = "TANG INA MO!| Welcome " .. LocalPlayer.DisplayName
+local windowTitle = "50KG x OG  | Welcome PUGE  " .. LocalPlayer.DisplayName
 
 -- Define base theme colors
 local BROWN = Color3.fromRGB(110, 50, 20)
