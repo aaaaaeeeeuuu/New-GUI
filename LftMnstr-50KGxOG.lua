@@ -24,7 +24,6 @@ task.spawn(function()
     local imgui = game:GetService("CoreGui"):WaitForChild("imgui", 10)
     if not imgui then return end
 
-    -- 🔄 Slow Blinking Loop (Smoothly interpolates between Brown and Black)
     task.spawn(function()
         local tweenService = game:GetService("TweenService")
         local isBrown = true
@@ -38,7 +37,6 @@ task.spawn(function()
                 local alpha = (tick() - startTime) / duration
                 currentThemeColor = startColor:Lerp(targetColor, alpha)
 
-                -- Update existing window elements dynamically
                 for _, element in ipairs(imgui:GetDescendants()) do
                     local nameLower = element.Name:lower()
                     if nameLower:match("window") or nameLower:match("main") then
@@ -153,9 +151,7 @@ local function eatEgg()
     end
 end
 
--- ============================================================================
--- SNACKS AUTO EAT LOGIC & MAPPING
--- ============================================================================
+
 local snackMap = {
     ["Energy Shake"] = { remoteKey = "energyShake", toolName = "Energy Shake" },
     ["Tough Bar"]     = { remoteKey = "toughBar",    toolName = "Tough Bar" },
@@ -172,7 +168,6 @@ local function eatSnack()
     local snackInfo = snackMap[selectedSnack]
     if not snackInfo then return end
 
-    -- Attempt to find the tool instance in Character, Backpack, or Nil
     local snackTool = (player.Character and player.Character:FindFirstChild(snackInfo.toolName))
         or (player:FindFirstChild("Backpack") and player.Backpack:FindFirstChild(snackInfo.toolName))
         or getNil(snackInfo.toolName, "Tool")
@@ -186,7 +181,6 @@ local function eatSnack()
     end
 end
 
--- 1. Create Standalone ScreenGui Overlay
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "Elerium_AFKOverlay"
 ScreenGui.ResetOnSpawn = false
@@ -204,7 +198,6 @@ if not ScreenGui.Parent then
     ScreenGui.Parent = CoreGui
 end
 
--- 2. Build the Timer Frame Layout
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Size = UDim2.new(0, 500, 0, 80)
@@ -292,7 +285,6 @@ end)
 
 AntiAFKSwitch:Set(true)
 
--- Global state for Popups
 local _G = getgenv and getgenv() or _G
 _G.HideGainedPopups = false
 local originalStates = {}
@@ -354,11 +346,9 @@ local speedActive = false
 local autoSpinActive = false
 local autoEatEggActive = false
 
--- References
 local player = game:GetService("Players").LocalPlayer
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
--- Helper function to handle auto-equipping tools
 local function autoEquipWeight()
     local character = player.Character
     if not character then return end
@@ -382,10 +372,6 @@ local function autoEquipWeight()
         end
     end
 end
-
--- ============================================================================
--- NEW SEPARATE SECTIONS IN FARM TAB
--- ============================================================================
 
 -- SECTION 1: EAT EGG
 local eatEggFolder = mainTab:AddFolder("Auto Eat Egg")
@@ -455,10 +441,6 @@ spinWheelFolder:AddSwitch("Auto Spin Wheel", function(state)
         end)
     end
 end)
-
--- ============================================================================
--- MAIN FARMING FEATURES
--- ============================================================================
 
 -- SWITCH 1: Auto Reps + Auto Equip
 mainTab:AddSwitch("Fast Weight", function(state)
@@ -783,9 +765,7 @@ _Teleport:AddButton('Teleport Now', function()
     end
 end)
 
----------------------------------------------------------
--- [LOCAL PLAYER STATS TAB]
----------------------------------------------------------
+-- Stats Tracker
 if _G.LocalTracker then _G.LocalTracker = nil end
 _G.LocalTracker = {
     Config = {
@@ -995,10 +975,7 @@ task.spawn(function()
     end
 end)
 
----------------------------------------------------------
--- [SPY PLAYER TRACKER]
----------------------------------------------------------
-do
+-- Spy Tracker
     local PlayersRef = game:GetService("Players")
     local LocalPlayerRef = PlayersRef.LocalPlayer
 
@@ -1192,9 +1169,7 @@ do
     end)
 end
 
----------------------------------------------------------
--- [AUTO KILL TAB]
----------------------------------------------------------
+-- Auto Kill
 local whitelistFriendsActive = false 
 local TargetInput = ""         
 local WhitelistedPlayers = {}        
@@ -1793,9 +1768,7 @@ Tab:AddButton("Clear All Whitelist", function()
     UpdateWhitelistLabel()
 end)
 
----------------------------------------------------------
--- [MISC TAB]
----------------------------------------------------------
+-- Misc
 local MiscTab = window:AddTab("Misc")
 local misc = MiscTab:AddFolder("Misc")
 
