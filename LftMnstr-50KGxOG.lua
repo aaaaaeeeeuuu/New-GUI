@@ -461,7 +461,7 @@ end)
 -- ============================================================================
 
 -- SWITCH 1: Auto Reps + Auto Equip
-mainTab:AddSwitch("Fast Reps Weight", function(state)
+mainTab:AddSwitch("Fast Weight", function(state)
     farmActive = state
     
     if farmActive then
@@ -505,7 +505,7 @@ local function autoEquipPushUps()
     end
 end
 
-mainTab:AddSwitch("Fast Reps Push Ups", function(state)
+mainTab:AddSwitch("Fast Push Ups", function(state)
     farmActive = state
     
     if farmActive then
@@ -526,7 +526,7 @@ mainTab:AddSwitch("Fast Reps Push Ups", function(state)
 end)
 
 -- SWITCH 2: Auto Rebirth (500)
-mainTab:AddSwitch("Fast Rebirth (500)", function(state)
+mainTab:AddSwitch("Fast Rebirth (x500)", function(state)
     rebirthActive = state
     
     if rebirthActive then
@@ -643,32 +643,6 @@ mainTab:AddSwitch("Lock Position", function(state)
     end
 end)
 
-mainTab:AddSwitch("LoopSpeed 500", function(state)
-    speedActive = state
-    
-    if speedActive then
-        task.spawn(function()
-            while speedActive do
-                local character = player.Character
-                if character then
-                    local humanoid = character:FindFirstChildOfClass("Humanoid")
-                    if humanoid and humanoid.WalkSpeed ~= 500 then
-                        humanoid.WalkSpeed = 500
-                    end
-                end
-                task.wait(0.05) 
-            end
-        end)
-    else
-        local character = player.Character
-        if character then
-            local humanoid = character:FindFirstChildOfClass("Humanoid")
-            if humanoid then
-                humanoid.WalkSpeed = 16
-            end
-        end
-    end
-end)
 
 local crystalTab = window:AddTab("Crystals")
 
@@ -1333,7 +1307,7 @@ local function isWhitelisted(otherPlayer)
     return false
 end
 
-local Tab = window:AddTab("☠️ Auto Kill")
+local Tab = window:AddTab("Auto Kill")
 
 Tab:AddSwitch("Loop TP Auto Kill All", function(Value)
     LoopKillAllActive = Value
@@ -1822,7 +1796,7 @@ end)
 ---------------------------------------------------------
 -- [MISC TAB]
 ---------------------------------------------------------
-local MiscTab = window:AddTab("⚙️ Misc")
+local MiscTab = window:AddTab("Misc")
 local misc = MiscTab:AddFolder("Misc")
 
 local function serverHop()
