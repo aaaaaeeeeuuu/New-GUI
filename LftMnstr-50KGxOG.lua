@@ -1167,7 +1167,6 @@ end)
             end
         end
     end)
-end
 
 -- Auto Kill
 local whitelistFriendsActive = false 
